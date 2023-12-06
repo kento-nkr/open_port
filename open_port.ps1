@@ -6,7 +6,7 @@ $port = 3000
 $distName = "Ubuntu"
 
 # "clean" オプションが指定された場合は過去の設定をリセット
-if ($args[0] -eq "clean") {
+if ($args[0] -eq "clear") {
     Remove-NetFirewallRule -DisplayName "WSL 2 Firewall Unlock"
     netsh interface portproxy delete v4tov4 listenport=$port listenaddress=*
     return

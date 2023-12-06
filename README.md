@@ -6,11 +6,11 @@
 - open port
 
   > `./open_port.ps1`
-   
+
 - check status
 
   > `./open_port.ps1 status`
-  
-- close port
 
-  > `./open_port.ps1 clean`
+- clear port settings
+
+  > `./open_port.ps1 clear`
