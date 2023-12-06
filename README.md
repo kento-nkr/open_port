@@ -11,6 +11,6 @@
 
   > `./open_port.ps1 status`
   
-5. close port
+- close port
 
   > `./open_port.ps1 clean`
