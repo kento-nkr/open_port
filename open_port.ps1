@@ -4,6 +4,8 @@
 $port = 3000
 # WSL2のディストリビューション名 (※適宜変更)
 $distName = "Ubuntu"
+# WSL2のIP addrを取得
+$wsl2Address = wsl -e hostname -I | ForEach-Object { $_.trim() }
 
 # 引数の一個目が数値だった場合、port番号として解釈する
 if ($args[0] -match '^\d+$') {
@@ -24,10 +26,10 @@ if ($args[0] -eq "status") {
 }
 
 # Windows Defenderに穴あけ
-New-NetFireWallRule -DisplayName "WSL 2 Firewall Unlock" -Direction Outbound -LocalPort $port -Action Allow -Protocol TCP
+# New-NetFireWallRule -DisplayName "WSL 2 Firewall Unlock" -Direction Outbound -LocalPort $port -Action Allow -Protocol TCP
 New-NetFireWallRule -DisplayName 'WSL 2 Firewall Unlock' -Direction Inbound -LocalPort $port -Action Allow -Protocol TCP
 # WSL2の現在のIPに対するポートフォワーディング設定
-netsh interface portproxy add v4tov4 listenport=$port listenaddress=* connectport=$port connectaddress=(wsl -d $distName -e hostname -I).trim()
+netsh interface portproxy add v4tov4 listenport=$port listenaddress=* connectport=$port connectaddress=$wsl2Address
 
 
 # 現在のユーザーが管理者権限を持っていない場合に、スクリプトを管理者権限で再実行するための処理です。
