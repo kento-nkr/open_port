@@ -1,3 +1,7 @@
+# OPERN_PORT
+
+WindowsからWSL2のUbuntuに対してポートフォワーディングをし，firewallを無効化するためのpowershellスクリプト
+
 # HOW TO USE
 
 > [!CAUTION]
